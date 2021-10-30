@@ -20,8 +20,7 @@
 fun navDrawer() {
     ComposeTestingTheme {
         val drawerState = rememberDrawerState2(initialValue = DrawerValue.Closed)
-
-        val scope = rememberCoroutineScope()
+        
         FlexibleDrawer(drawerState = drawerState,
             drawerContent = {
                 //whatever is inside the drawer
