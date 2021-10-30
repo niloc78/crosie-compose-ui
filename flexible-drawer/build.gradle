@@ -1,19 +1,17 @@
+
 plugins {
     id 'com.android.library'
     id 'kotlin-android'
     id 'maven-publish'
 }
 
-group = 'com.github.niloc78'
-
 android {
-    compileSdk 30
+    compileSdkVersion 30
+    buildToolsVersion "30.0.3"
 
     defaultConfig {
-        minSdk 26
-        targetSdk 30
-        versionCode 1
-        versionName "1.0"
+        minSdkVersion 26
+        targetSdkVersion 30
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
@@ -25,12 +23,19 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    buildFeatures {
+        compose true
+    }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
     kotlinOptions {
         jvmTarget = '1.8'
+        useIR = true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion compose_version
     }
 }
 
@@ -52,7 +57,7 @@ afterEvaluate {
         publications {
             release(MavenPublication) {
                 from components.release
-                groupId = group
+                groupId = 'com.colinruan'
                 artifactId = 'flexible_drawer'
                 version = '1.0'
             }
