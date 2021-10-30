@@ -56,11 +56,11 @@ dependencyResolutionManagement {
 } 
 ...
 ```
-2. In your app level build.gradle, add this dependency:
+2. In your app level build.gradle, add this dependency(latest version = 1.0.6):
 ```gradle
 dependencies {
   ...
-  implementation 'com.github.niloc78.crosie-compose-ui:flexible_drawer:1.05'
+  implementation 'com.github.niloc78.crosie-compose-ui:flexible_drawer:$latestVersion'
   ...
 }
 ```
