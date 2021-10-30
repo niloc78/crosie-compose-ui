@@ -8,10 +8,7 @@ import androidx.compose.foundation.gestures.Orientation
 import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.Stable
-import androidx.compose.runtime.State
-import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.Saver
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
@@ -172,8 +169,8 @@ fun FlexibleDrawer(
             throw IllegalStateException("Drawer shouldn't have infinite width")
         }
 
-        val minValue = -modalDrawerConstraints.maxWidth.toFloat()
-        val maxValue = minValue * (1- drawerPortion)
+        val minValue = -modalDrawerConstraints.maxWidth * drawerPortion
+        val maxValue = 0f
 
         val anchors = mapOf(minValue to DrawerValue.Closed, maxValue to DrawerValue.Open)
         val isRtl = LocalLayoutDirection.current == LayoutDirection.Rtl
@@ -210,22 +207,20 @@ fun FlexibleDrawer(
                 color = scrimColor
             )
             //val navigationMenu = getString(Strings.NavigationMenu)
+            //(modalDrawerConstraints.maxWidth * drawerPortion).toDp()
             Surface(
                 modifier = with(LocalDensity.current) {
                     Modifier
-                        .sizeIn(
-                            minWidth = modalDrawerConstraints.minWidth.toDp(),
-                            minHeight = modalDrawerConstraints.minHeight.toDp(),
-                            maxWidth = modalDrawerConstraints.maxWidth.toDp(),
-                            maxHeight = modalDrawerConstraints.maxHeight.toDp()
-                        )
+                        .width((modalDrawerConstraints.maxWidth * drawerPortion).toDp())
+                        .heightIn(min = modalDrawerConstraints.minHeight.toDp(),
+                                  max = modalDrawerConstraints.maxHeight.toDp())
                         .padding(end = endDrawerPadding)
 
                 }
                     .offset { IntOffset(drawerState.offset.value.roundToInt(), 0) }
 
                     .semantics {
-                      //  paneTitle = navigationMenu
+                        //  paneTitle = navigationMenu
                         if (drawerState.isOpen) {
                             dismiss {
                                 if (
