@@ -54,7 +54,7 @@ afterEvaluate {
             release(MavenPublication) {
                 from components.release
                 groupId = 'com.colinruan'
-                artifactId = 'flexible_drawer'
+                artifactId = 'circular_progress_button'
                 version = '1.0'
             }
         }

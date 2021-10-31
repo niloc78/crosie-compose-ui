@@ -12,3 +12,4 @@ rootProject.name = "crosie-compose-ui"
 include ':app'
 include ':flexible-drawer'
 include ':sample'
+include ':circular-progress-button'
