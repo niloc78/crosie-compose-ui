@@ -59,8 +59,8 @@ fun CircularProgressButton(modifier : Modifier = Modifier, isTimedLongPressed : 
                         }
                         job.invokeOnCompletion {
                             if (it == null) { // completed normally, invoke ontimedlongpress, reset ui
-                                onTimedLongPress()
                                 isTimedLongPressed.value = true
+                                onTimedLongPress()
                             }
                             isRunning = false
                         }
