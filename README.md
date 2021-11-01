@@ -73,7 +73,7 @@ dependencies {
 | ---------------- | -------------|
 | Do something after the specified duration pressed | `onTimedLongPress : () -> Unit, default = {}` |
 | Specify the duration to invoke the timed long press | `timer : Long, default = 2000L` |
-| Initial state of the button) | `isTimedLongPressed : MutableState<Boolean>, default = remember { mutableStateOf(false) }` |
+| Initial state of the button | `isTimedLongPressed : MutableState<Boolean>, default = remember { mutableStateOf(false) }` |
 | Specify the progress stroke width, stroke start/end color (gradients), circle radius, pressed/unpressed circle color,  | `strokeWidth : Float , default = 35f` <br/> `strokeStartColor : Color, default = Color.Blue` <br/> `strokeEndColor : Color, default = Color.Cyan` <br/> `radius : Float, default = 60f` <br/> `circleColor : Color, default = Color.Cyan` <br/> `pressedColor : Color, default = Color.Green` |
 | Specify padding between the progress stroke and the inner circle | `innerPadding : Float, default = 30f` |
 | Specify the end of the progress stroke should be rounded, or edged | `roundedStrokeCap : Boolean, default = true` |
