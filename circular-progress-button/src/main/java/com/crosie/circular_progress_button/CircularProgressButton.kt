@@ -33,7 +33,7 @@ fun CircularProgressButton(modifier : Modifier = Modifier, isTimedLongPressed : 
                            strokeEndColor : Color = Color.Cyan, pressedColor : Color = Color.Green,
                            showPressedStroke : Boolean = true, strokeDecreaseTimer : Int = 300,
                            overlapCircleOverStroke : Boolean = false, unPressOnTap : Boolean = false,
-                           isEnabled : MutableState<Boolean>,
+                           isEnabled : MutableState<Boolean> = mutableStateOf(true),
                            onTimedLongPress : () -> Unit = {}) {
     val scope = rememberCoroutineScope()
     var progress by remember { mutableStateOf(0f) }
