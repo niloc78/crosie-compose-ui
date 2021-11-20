@@ -33,7 +33,7 @@ fun CircularProgressButton(modifier : Modifier = Modifier, isTimedLongPressed : 
                            strokeEndColor : Color = Color.Cyan, pressedColor : Color = Color.Green,
                            showPressedStroke : Boolean = true, strokeDecreaseTimer : Int = 300,
                            overlapCircleOverStroke : Boolean = false, unPressOnTap : Boolean = false,
-                           isEnabled : MutableState<Boolean> = mutableStateOf(true),
+                           isEnabled : Boolean = true,
                            onTimedLongPress : () -> Unit = {}) {
     val scope = rememberCoroutineScope()
     var progress by remember { mutableStateOf(0f) }
@@ -53,7 +53,7 @@ fun CircularProgressButton(modifier : Modifier = Modifier, isTimedLongPressed : 
         .pointerInput(Unit) {
             detectTapGestures(
                 onPress = {
-                    if (!isTimedLongPressed.value && isEnabled.value) {
+                    if (!isTimedLongPressed.value && isEnabled) {
                         isRunning = true
                         val job = scope.launch {
                             delay(timer)
@@ -69,7 +69,7 @@ fun CircularProgressButton(modifier : Modifier = Modifier, isTimedLongPressed : 
                         if (!job.isCompleted && released) {
                             job.cancel()
                         }
-                    } else if (isTimedLongPressed.value && unPressOnTap && isEnabled.value) {
+                    } else if (isTimedLongPressed.value && unPressOnTap && isEnabled) {
                         isTimedLongPressed.value = false
                     }
                 }
